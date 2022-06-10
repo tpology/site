@@ -8,6 +8,7 @@ import (
 // Element is an HTML element.
 type Element interface {
 	String() string
+	DeepCopy() Element
 }
 
 // Document is a sequence of Elements.
@@ -86,4 +87,32 @@ func (doc Document) String() string {
 		buf.WriteString(e.String())
 	}
 	return buf.String()
+}
+
+// DeepCopy returns a deep copy of the Document.
+func (doc Document) DeepCopy() Element {
+	var copy Document
+	for _, e := range doc {
+		copy = append(copy, e.DeepCopy())
+	}
+	return copy
+}
+
+// DeepCopy returns a deep copy of the Element.
+func (e *HtmlTag) DeepCopy() Element {
+	cpy := &HtmlTag{
+		Name:     e.Name,
+		Attr:     make([]Attr, len(e.Attr)),
+		Children: e.Children.DeepCopy().(Document),
+	}
+	copy(cpy.Attr, e.Attr)
+	return cpy
+}
+
+// DeepCopy returns a deep copy of the Element.
+func (e *Text) DeepCopy() Element {
+	cpy := &Text{
+		Value: e.Value,
+	}
+	return cpy
 }

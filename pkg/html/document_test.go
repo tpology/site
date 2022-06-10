@@ -103,3 +103,43 @@ func Test_Document(t *testing.T) {
 		t.Errorf("Document.String() = %q, want %q", doc.String(), "<html lang=\"en\"><head><title>Hello, world!</title></head><body><h1>Hello, world!</h1></body></html>")
 	}
 }
+
+// Test_DeepCopy tests the DeepCopy method.
+func Test_DeepCopy(t *testing.T) {
+	doc := Document{
+		&HtmlTag{
+			Name: "html",
+			Attr: []Attr{
+				{Key: "lang", Value: "en"},
+			},
+			Children: []Element{
+				&HtmlTag{
+					Name: "head",
+					Children: []Element{
+						&HtmlTag{
+							Name: "title",
+							Children: []Element{
+								&Text{"Hello, world!"},
+							},
+						},
+					},
+				},
+				&HtmlTag{
+					Name: "body",
+					Children: []Element{
+						&HtmlTag{
+							Name: "h1",
+							Children: []Element{
+								&Text{"Hello, world!"},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+	doc2 := doc.DeepCopy()
+	if doc.String() != doc2.String() {
+		t.Errorf("doc.String() = %q, doc2.String() = %q", doc.String(), doc2.String())
+	}
+}
