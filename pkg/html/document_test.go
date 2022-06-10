@@ -14,7 +14,7 @@ func Test_Text(t *testing.T) {
 func Test_HtmlTag(t *testing.T) {
 	tag := &HtmlTag{
 		Name: "div",
-		Attr: []Attr{
+		Attribute: []Attribute{
 			{Key: "class", Value: "foo"},
 			{Key: "id", Value: "bar"},
 		},
@@ -31,7 +31,7 @@ func Test_HtmlTag(t *testing.T) {
 func Test_HtmlTag_Void(t *testing.T) {
 	tag := &HtmlTag{
 		Name: "img",
-		Attr: []Attr{
+		Attribute: []Attribute{
 			{Key: "src", Value: "foo.png"},
 		},
 	}
@@ -44,14 +44,14 @@ func Test_HtmlTag_Void(t *testing.T) {
 func Test_HtmlTag_Children(t *testing.T) {
 	tag := &HtmlTag{
 		Name: "div",
-		Attr: []Attr{
+		Attribute: []Attribute{
 			{Key: "class", Value: "foo"},
 			{Key: "id", Value: "bar"},
 		},
 		Children: []Element{
 			&HtmlTag{
 				Name: "span",
-				Attr: []Attr{
+				Attribute: []Attribute{
 					{Key: "class", Value: "baz"},
 				},
 				Children: []Element{
@@ -70,7 +70,7 @@ func Test_Document(t *testing.T) {
 	doc := Document{
 		&HtmlTag{
 			Name: "html",
-			Attr: []Attr{
+			Attribute: []Attribute{
 				{Key: "lang", Value: "en"},
 			},
 			Children: []Element{
@@ -109,7 +109,7 @@ func Test_DeepCopy(t *testing.T) {
 	doc := Document{
 		&HtmlTag{
 			Name: "html",
-			Attr: []Attr{
+			Attribute: []Attribute{
 				{Key: "lang", Value: "en"},
 			},
 			Children: []Element{
