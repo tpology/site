@@ -4,7 +4,7 @@ import "testing"
 
 // Test_Text tests the Text type.
 func Test_Text(t *testing.T) {
-	txt := &Text{"Hello, world!"}
+	txt := &TextContent{"Hello, world!"}
 	if txt.String() != "Hello, world!" {
 		t.Errorf("Text.String() = %q, want %q", txt.String(), "Hello, world!")
 	}
@@ -19,7 +19,7 @@ func Test_HtmlTag(t *testing.T) {
 			{Key: "id", Value: "bar"},
 		},
 		Children: []Element{
-			&Text{"Hello, world!"},
+			&TextContent{"Hello, world!"},
 		},
 	}
 	if tag.String() != "<div class=\"foo\" id=\"bar\">Hello, world!</div>" {
@@ -55,7 +55,7 @@ func Test_HtmlTag_Children(t *testing.T) {
 					{Key: "class", Value: "baz"},
 				},
 				Children: []Element{
-					&Text{"Hello, world!"},
+					&TextContent{"Hello, world!"},
 				},
 			},
 		},
@@ -80,7 +80,7 @@ func Test_Document(t *testing.T) {
 						&HtmlTag{
 							Name: "title",
 							Children: []Element{
-								&Text{"Hello, world!"},
+								&TextContent{"Hello, world!"},
 							},
 						},
 					},
@@ -91,7 +91,7 @@ func Test_Document(t *testing.T) {
 						&HtmlTag{
 							Name: "h1",
 							Children: []Element{
-								&Text{"Hello, world!"},
+								&TextContent{"Hello, world!"},
 							},
 						},
 					},
@@ -119,7 +119,7 @@ func Test_DeepCopy(t *testing.T) {
 						&HtmlTag{
 							Name: "title",
 							Children: []Element{
-								&Text{"Hello, world!"},
+								&TextContent{"Hello, world!"},
 							},
 						},
 					},
@@ -130,7 +130,7 @@ func Test_DeepCopy(t *testing.T) {
 						&HtmlTag{
 							Name: "h1",
 							Children: []Element{
-								&Text{"Hello, world!"},
+								&TextContent{"Hello, world!"},
 							},
 						},
 					},

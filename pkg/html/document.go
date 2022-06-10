@@ -26,8 +26,8 @@ type HtmlTag struct {
 	Children Document
 }
 
-// Text is an Element representing text.
-type Text struct {
+// TextContent is an Element representing text.
+type TextContent struct {
 	Value string
 }
 
@@ -76,7 +76,7 @@ func (t HtmlTag) String() string {
 }
 
 // String returns the string representation of the Element.
-func (t Text) String() string {
+func (t TextContent) String() string {
 	return gohtml.EscapeString(t.Value)
 }
 
@@ -110,8 +110,8 @@ func (e *HtmlTag) DeepCopy() Element {
 }
 
 // DeepCopy returns a deep copy of the Element.
-func (e *Text) DeepCopy() Element {
-	cpy := &Text{
+func (e *TextContent) DeepCopy() Element {
+	cpy := &TextContent{
 		Value: e.Value,
 	}
 	return cpy
