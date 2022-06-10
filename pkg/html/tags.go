@@ -2,23 +2,6 @@ package html
 
 import "strconv"
 
-// Tag returns a HtmlTag with the given name and children
-func Tag(name string, children ...Element) Element {
-	return &HtmlTag{
-		Name:     name,
-		Children: Document(children),
-	}
-}
-
-// Attr adds an Attribute to a tag
-func (t *HtmlTag) Attr(key, value string) *HtmlTag {
-	t.Attribute = append(t.Attribute, Attribute{
-		Key:   key,
-		Value: value,
-	})
-	return t
-}
-
 // AccessKey sets the access key attribute of a tag
 func (t *HtmlTag) AccessKey(key string) *HtmlTag {
 	return t.Attr("accesskey", key)
